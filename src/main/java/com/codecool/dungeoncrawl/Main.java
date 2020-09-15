@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -23,16 +24,17 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    ArrayList<String> inventory=new ArrayList<>();
+    ArrayList<String> inventory = new ArrayList<>();
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
-    Label test=new Label();
+    Label attackLabel = new Label();
+    Label test = new Label();
     Button pickUpBtn = new Button("Pick Up Item");
-
+    Player player;
     private Actor actor;
 
 
@@ -47,11 +49,13 @@ public class Main extends Application {
         ui.setPadding(new Insets(10));
 
         ui.add(new Label("Health: "), 0, 0);
+        ui.add(new Label("Attack: "),0,1);
         ui.add(healthLabel, 1, 0);
-        ui.add(pickUpBtn,0,1);
+        ui.add(attackLabel, 1, 1);
+        ui.add(pickUpBtn, 0, 2);
         pickUpBtn.setDisable(true);
-        ui.add(new Label("Inventory:"),0,2);
-        ui.add(test,0,3);
+        ui.add(new Label("Inventory:"), 0, 3);
+        ui.add(test, 0, 4);
 
 
         BorderPane borderPane = new BorderPane();
@@ -83,7 +87,7 @@ public class Main extends Application {
                 refresh();
                 break;
             case RIGHT:
-                map.getPlayer().move(1,0);
+                map.getPlayer().move(1, 0);
                 refresh();
                 break;
         }
@@ -100,32 +104,41 @@ public class Main extends Application {
 
                 if (cell.getActor() != null) {
                     Tiles.drawTile(context, cell.getActor(), x, y);
-                } else if(cell.getItem() != null){
+                } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
-                }else {
+                } else {
                     Tiles.drawTile(context, cell, x, y);
                 }
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+        attackLabel.setText("" + map.getPlayer().getAttack());
 //        for (int i = 3; i <inventory.size()+3 ; i++) {
 //            ui.add(new Label(inventory.get(i)),0,i);
 //        }
+
         pickUpBtn.setDisable(map.getPlayer().getCell().isItem());
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 inventory.add(map.getPlayer().getCell().getItem().getTileName());
-                StringBuilder inventar= new StringBuilder();
-                for (String i:inventory
+                StringBuilder inventar = new StringBuilder();
+                for (String i : inventory
                 ) {
                     inventar.append("1x ").append(i).append("\n");
+                }
+                if(map.getPlayer().getCell().getItem().getTileName().equals("sword")){
+                    map.getPlayer().setAttack(map.getPlayer().getAttack()+10);
+                    attackLabel.setText(String.valueOf(map.getPlayer().getAttack()));
+                }
+                if(map.getPlayer().getCell().getItem().getTileName().equals("shield")){
+                    map.getPlayer().setHealth(map.getPlayer().getHealth()+20);
+                    healthLabel.setText(String.valueOf(map.getPlayer().getHealth()));
                 }
                 map.getPlayer().getCell().setItem(null);
                 pickUpBtn.setDisable(true);
                 test.setText(inventar.toString());
                 refresh();
-
 
 
             }
