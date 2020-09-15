@@ -3,211 +3,184 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="432.3830188679247" y="113.0">com.codecool.dungeoncrawl.logic.actors.Actor</node>
-    <node x="670.7458333333336" y="1513.0">com.codecool.dungeoncrawl.logic.MapLoader</node>
-    <node x="612.1746855345914" y="689.0">com.codecool.dungeoncrawl.logic.GameMap</node>
-    <node x="146.4000000000001" y="1261.0">com.codecool.dungeoncrawl.Tiles.Tile</node>
-    <node x="349.3830188679247" y="0.0">com.codecool.dungeoncrawl.logic.Drawable</node>
-    <node x="723.6121855345914" y="393.0">com.codecool.dungeoncrawl.logic.CellType</node>
-    <node x="558.6121855345914" y="456.5">com.codecool.dungeoncrawl.logic.actors.Player</node>
-    <node x="578.857350628931" y="1664.0">com.codecool.dungeoncrawl.Main</node>
-    <node x="300.4000000000001" y="1298.5">com.codecool.dungeoncrawl.logic.actors.Skeleton</node>
-    <node x="619.857350628931" y="1953.0">com.codecool.dungeoncrawl.App</node>
-    <node x="462.8309355345914" y="970.0">com.codecool.dungeoncrawl.logic.Cell</node>
-    <node x="0.0" y="1475.0">com.codecool.dungeoncrawl.Tiles</node>
+    <node x="91.8783284023668" y="80.0">com.codecool.dungeoncrawl.logic.actors.Actor</node>
+    <node x="209.12191814595656" y="630.0">com.codecool.dungeoncrawl.logic.MapLoader</node>
+    <node x="214.609097633136" y="320.0">com.codecool.dungeoncrawl.logic.GameMap</node>
+    <node x="79.87832840236683" y="0.0">com.codecool.dungeoncrawl.logic.Drawable</node>
+    <node x="264.82051282051276" y="200.0">com.codecool.dungeoncrawl.logic.CellType</node>
+    <node x="148.82051282051276" y="200.0">com.codecool.dungeoncrawl.logic.actors.Player</node>
+    <node x="312.456114398422" y="710.0">com.codecool.dungeoncrawl.Main</node>
+    <node x="0.0" y="550.0">com.codecool.dungeoncrawl.logic.actors.Skeleton</node>
+    <node x="316.456114398422" y="790.0">com.codecool.dungeoncrawl.App</node>
+    <node x="156.1591469428007" y="470.0">com.codecool.dungeoncrawl.logic.Cell</node>
+    <node x="371.88979289940823" y="80.0">com.codecool.dungeoncrawl.Tiles</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.codecool.dungeoncrawl.logic.MapLoader" target="com.codecool.dungeoncrawl.logic.Cell">
-      <point x="-49.0" y="-31.5" />
-      <point x="719.7458333333336" y="1445.0" />
-      <point x="673.0153694968556" y="1445.0" />
-      <point x="673.0153694968556" y="1236.0" />
-      <point x="701.1642688679246" y="1236.0" />
-      <point x="95.33333333333324" y="120.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.logic.GameMap" target="com.codecool.dungeoncrawl.logic.Cell">
-      <point x="-47.0625" y="95.5" />
-      <point x="690.6121855345914" y="950.0" />
-      <point x="693.8309355345914" y="950.0" />
-      <point x="88.0" y="-120.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.Main" target="com.codecool.dungeoncrawl.logic.GameMap">
-      <point x="98.25" y="-119.5" />
-      <point x="808.107350628931" y="1644.0" />
-      <point x="961.0562500000002" y="1644.0" />
-      <point x="961.0562500000002" y="950.0" />
-      <point x="847.4871855345914" y="950.0" />
-      <point x="109.8125" y="95.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.Main" target="com.codecool.dungeoncrawl.logic.MapLoader">
-      <point x="32.75" y="-119.5" />
-      <point x="742.607350628931" y="1644.0" />
-      <point x="768.7458333333336" y="1644.0" />
-      <point x="0.0" y="31.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.logic.actors.Actor" target="com.codecool.dungeoncrawl.logic.Cell">
-      <point x="-33.375" y="95.0" />
-      <point x="488.0080188679247" y="343.0" />
-      <point x="466.60078616352223" y="343.0" />
-      <point x="466.60078616352223" y="940.0" />
-      <point x="495.8309355345914" y="940.0" />
-      <point x="-110.0" y="-120.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.Tiles.Tile" target="com.codecool.dungeoncrawl.Tiles">
-      <point x="26.80000000000001" y="82.0" />
-      <point x="240.2000000000001" y="1455.0" />
-      <point x="300.0" y="1455.0" />
-      <point x="100.0" y="-69.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.logic.actors.Actor" target="com.codecool.dungeoncrawl.logic.Drawable">
-      <point x="0.0" y="-95.0" />
-      <point x="521.3830188679246" y="88.0" />
-      <point x="470.2163522012581" y="88.0" />
-      <point x="48.33333333333337" y="31.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.logic.Cell" target="com.codecool.dungeoncrawl.logic.Drawable">
-      <point x="-132.0" y="-120.5" />
-      <point x="473.8309355345914" y="950.0" />
-      <point x="421.8830188679247" y="950.0" />
-      <point x="0.0" y="31.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.Tiles" target="com.codecool.dungeoncrawl.logic.Drawable">
-      <point x="-166.66666666666674" y="-69.5" />
-      <point x="33.33333333333326" y="1445.0" />
-      <point x="135.9000000000001" y="1445.0" />
-      <point x="135.9000000000001" y="88.0" />
-      <point x="373.5496855345914" y="88.0" />
-      <point x="-48.333333333333314" y="31.5" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.logic.GameMap" target="com.codecool.dungeoncrawl.logic.CellType">
-      <point x="83.66666666666663" y="-95.5" />
-      <point x="821.341352201258" y="669.0" />
-      <point x="862.3621855345914" y="669.0" />
-      <point x="27.75" y="108.0" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.logic.actors.Skeleton" target="com.codecool.dungeoncrawl.logic.Cell">
-      <point x="50.666666666666686" y="-44.5" />
-      <point x="427.0666666666668" y="1236.0" />
-      <point x="510.497602201258" y="1236.0" />
-      <point x="-95.33333333333337" y="120.5" />
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Skeleton" target="com.codecool.dungeoncrawl.logic.actors.Actor">
+      <point x="0.0" y="-15.0" />
+      <point x="56.0" y="525.0" />
+      <point x="47.9232001972386" y="525.0" />
+      <point x="47.9232001972386" y="140.0" />
+      <point x="108.3783284023668" y="140.0" />
+      <point x="-27.5" y="15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.MapLoader" target="com.codecool.dungeoncrawl.logic.CellType">
-      <point x="81.66666666666663" y="-31.5" />
-      <point x="850.4125000000001" y="1455.0" />
-      <point x="935.1916666666668" y="1455.0" />
-      <point x="935.1916666666668" y="669.0" />
-      <point x="917.8621855345914" y="669.0" />
-      <point x="83.25" y="108.0" />
+      <point x="50.0" y="-15.0" />
+      <point x="319.12191814595656" y="610.0" />
+      <point x="368.706114398422" y="610.0" />
+      <point x="368.706114398422" y="300.0" />
+      <point x="362.82051282051276" y="300.0" />
+      <point x="41.999999999999986" y="15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.Cell" target="com.codecool.dungeoncrawl.logic.actors.Actor">
-      <point x="-44.0" y="-120.5" />
-      <point x="561.8309355345914" y="910.0" />
-      <point x="505.2354166666669" y="910.0" />
-      <point x="505.2354166666669" y="373.0" />
-      <point x="554.7580188679246" y="373.0" />
-      <point x="33.375" y="95.0" />
-    </edge>
-    <edge source="com.codecool.dungeoncrawl.logic.actors.Skeleton" target="com.codecool.dungeoncrawl.logic.actors.Actor">
-      <point x="-50.66666666666663" y="-44.5" />
-      <point x="325.73333333333346" y="1236.0" />
-      <point x="362.1729166666669" y="1236.0" />
-      <point x="362.1729166666669" y="323.0" />
-      <point x="443.5080188679247" y="323.0" />
-      <point x="-77.875" y="95.0" />
+      <point x="-30.769230769230774" y="-15.0" />
+      <point x="165.38991617356993" y="440.0" />
+      <point x="95.37820512820511" y="440.0" />
+      <point x="95.37820512820511" y="150.0" />
+      <point x="119.3783284023668" y="150.0" />
+      <point x="-16.5" y="15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.Cell" target="com.codecool.dungeoncrawl.logic.CellType">
-      <point x="22.0" y="-120.5" />
-      <point x="627.8309355345914" y="940.0" />
-      <point x="601.6746855345914" y="940.0" />
-      <point x="601.6746855345914" y="669.0" />
-      <point x="806.8621855345914" y="669.0" />
-      <point x="-27.75" y="108.0" />
+      <point x="0.0" y="-15.0" />
+      <point x="196.1591469428007" y="370.0" />
+      <point x="197.85268737672578" y="370.0" />
+      <point x="197.85268737672578" y="280.0" />
+      <point x="278.82051282051276" y="280.0" />
+      <point x="-42.0" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.MapLoader" target="com.codecool.dungeoncrawl.logic.Cell">
+      <point x="-30.0" y="-15.0" />
+      <point x="239.12191814595656" y="600.0" />
+      <point x="221.9091469428007" y="600.0" />
+      <point x="26.666666666666686" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.GameMap" target="com.codecool.dungeoncrawl.logic.Cell">
+      <point x="-19.5" y="15.0" />
+      <point x="247.109097633136" y="410.0" />
+      <point x="220.7745315581853" y="410.0" />
+      <point x="24.615384615384585" y="-15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.Main" target="com.codecool.dungeoncrawl.logic.Cell">
-      <point x="-32.75" y="-119.5" />
-      <point x="677.107350628931" y="1634.0" />
-      <point x="615.5375000000001" y="1634.0" />
-      <point x="615.5375000000001" y="1236.0" />
-      <point x="605.8309355345914" y="1236.0" />
-      <point x="0.0" y="120.5" />
+      <point x="-30.0" y="-15.0" />
+      <point x="322.456114398422" y="690.0" />
+      <point x="196.1591469428007" y="690.0" />
+      <point x="0.0" y="15.0" />
     </edge>
-    <edge source="com.codecool.dungeoncrawl.App" target="com.codecool.dungeoncrawl.Main">
-      <point x="0.0" y="-31.5" />
-      <point x="0.0" y="119.5" />
+    <edge source="com.codecool.dungeoncrawl.Main" target="com.codecool.dungeoncrawl.logic.GameMap">
+      <point x="10.0" y="-15.0" />
+      <point x="362.456114398422" y="680.0" />
+      <point x="392.206114398422" y="680.0" />
+      <point x="392.206114398422" y="450.0" />
+      <point x="312.109097633136" y="450.0" />
+      <point x="45.5" y="15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.MapLoader" target="com.codecool.dungeoncrawl.logic.actors.Skeleton">
-      <point x="-81.66666666666663" y="-31.5" />
-      <point x="687.0791666666669" y="1455.0" />
-      <point x="376.4000000000001" y="1455.0" />
-      <point x="0.0" y="44.5" />
+      <point x="-50.0" y="-15.0" />
+      <point x="219.12191814595656" y="610.0" />
+      <point x="56.0" y="610.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.App" target="com.codecool.dungeoncrawl.Main">
+      <point x="0.0" y="-15.0" />
+      <point x="0.0" y="15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.actors.Player" target="com.codecool.dungeoncrawl.logic.Cell">
-      <point x="-54.375" y="44.5" />
-      <point x="576.7371855345914" y="669.0" />
-      <point x="545.1403694968556" y="669.0" />
-      <point x="545.1403694968556" y="900.0" />
-      <point x="583.8309355345914" y="900.0" />
-      <point x="-22.0" y="-120.5" />
+      <point x="-36.0" y="15.0" />
+      <point x="160.82051282051276" y="300.0" />
+      <point x="156.67098126232742" y="300.0" />
+      <point x="156.67098126232742" y="400.0" />
+      <point x="190.00530078895457" y="400.0" />
+      <point x="-6.153846153846132" y="-15.0" />
     </edge>
-    <edge source="com.codecool.dungeoncrawl.logic.MapLoader" target="com.codecool.dungeoncrawl.logic.actors.Player">
-      <point x="49.0" y="-31.5" />
-      <point x="817.7458333333336" y="1445.0" />
-      <point x="873.6746855345914" y="1445.0" />
-      <point x="873.6746855345914" y="629.0" />
-      <point x="685.4871855345914" y="629.0" />
-      <point x="54.375" y="44.5" />
+    <edge source="com.codecool.dungeoncrawl.Main" target="com.codecool.dungeoncrawl.logic.MapLoader">
+      <point x="-10.0" y="-15.0" />
+      <point x="342.456114398422" y="680.0" />
+      <point x="269.12191814595656" y="680.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Actor" target="com.codecool.dungeoncrawl.logic.Cell">
+      <point x="5.5" y="15.0" />
+      <point x="141.3783284023668" y="170.0" />
+      <point x="107.68589743589743" y="170.0" />
+      <point x="107.68589743589743" y="420.0" />
+      <point x="177.69760848126225" y="420.0" />
+      <point x="-18.461538461538453" y="-15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.MapLoader" target="com.codecool.dungeoncrawl.logic.GameMap">
-      <point x="16.33333333333337" y="-31.5" />
-      <point x="785.0791666666669" y="1455.0" />
-      <point x="808.7371855345914" y="1455.0" />
-      <point x="808.7371855345914" y="950.0" />
-      <point x="816.1121855345914" y="950.0" />
-      <point x="78.4375" y="95.5" />
+      <point x="10.0" y="-15.0" />
+      <point x="279.12191814595656" y="610.0" />
+      <point x="283.38979289940823" y="610.0" />
+      <point x="283.38979289940823" y="450.0" />
+      <point x="299.109097633136" y="450.0" />
+      <point x="32.5" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.MapLoader" target="com.codecool.dungeoncrawl.logic.actors.Player">
+      <point x="30.0" y="-15.0" />
+      <point x="299.12191814595656" y="600.0" />
+      <point x="337.39755917159755" y="600.0" />
+      <point x="337.39755917159755" y="250.0" />
+      <point x="232.82051282051276" y="250.0" />
+      <point x="36.0" y="15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.Cell" target="com.codecool.dungeoncrawl.logic.GameMap">
-      <point x="44.0" y="-120.5" />
-      <point x="649.8309355345914" y="930.0" />
-      <point x="627.8621855345914" y="930.0" />
-      <point x="-109.8125" y="95.5" />
+      <point x="12.30769230769232" y="-15.0" />
+      <point x="208.46683925049302" y="390.0" />
+      <point x="221.109097633136" y="390.0" />
+      <point x="-45.5" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Actor" target="com.codecool.dungeoncrawl.logic.Drawable">
+      <point x="2.8421709430404007E-14" y="-15.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.Cell" target="com.codecool.dungeoncrawl.logic.Drawable">
+      <point x="-36.92307692307696" y="-15.0" />
+      <point x="159.23607001972374" y="450.0" />
+      <point x="68.45512820512818" y="450.0" />
+      <point x="68.45512820512818" y="55.0" />
+      <point x="98.54499506903349" y="55.0" />
+      <point x="-37.33333333333334" y="15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.GameMap" target="com.codecool.dungeoncrawl.logic.actors.Player">
-      <point x="-83.66666666666663" y="-95.5" />
-      <point x="654.0080188679248" y="649.0" />
-      <point x="612.9871855345914" y="649.0" />
-      <point x="-18.125" y="44.5" />
+      <point x="-34.66666666666663" y="-15.0" />
+      <point x="231.94243096646937" y="270.0" />
+      <point x="184.82051282051276" y="270.0" />
+      <point x="-12.0" y="15.0" />
     </edge>
-    <edge source="com.codecool.dungeoncrawl.Main" target="com.codecool.dungeoncrawl.Tiles">
-      <point x="-98.25" y="-119.5" />
-      <point x="611.607350628931" y="1644.0" />
-      <point x="200.0" y="1644.0" />
-      <point x="0.0" y="69.5" />
+    <edge source="com.codecool.dungeoncrawl.Tiles" target="com.codecool.dungeoncrawl.logic.Drawable">
+      <point x="0.0" y="-15.0" />
+      <point x="415.88979289940823" y="55.0" />
+      <point x="173.21166173570018" y="55.0" />
+      <point x="37.33333333333334" y="15.0" />
     </edge>
     <edge source="com.codecool.dungeoncrawl.logic.actors.Player" target="com.codecool.dungeoncrawl.logic.actors.Actor">
-      <point x="36.25" y="-44.5" />
-      <point x="667.3621855345914" y="363.0" />
-      <point x="599.2580188679246" y="363.0" />
-      <point x="77.875" y="95.0" />
+      <point x="-24.0" y="-15.0" />
+      <point x="172.82051282051276" y="180.0" />
+      <point x="163.37832840236683" y="180.0" />
+      <point x="27.50000000000003" y="15.0" />
     </edge>
-    <edge source="com.codecool.dungeoncrawl.Tiles" target="com.codecool.dungeoncrawl.Tiles.Tile">
-      <point x="-100.0" y="-69.5" />
-      <point x="100.0" y="1455.0" />
-      <point x="159.80000000000007" y="1455.0" />
-      <point x="-53.599999999999994" y="82.0" />
+    <edge source="com.codecool.dungeoncrawl.logic.GameMap" target="com.codecool.dungeoncrawl.logic.CellType">
+      <point x="34.666666666666686" y="-15.0" />
+      <point x="301.2757642998027" y="300.0" />
+      <point x="334.82051282051276" y="300.0" />
+      <point x="14.0" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.Main" target="com.codecool.dungeoncrawl.Tiles">
+      <point x="30.0" y="-15.0" />
+      <point x="382.456114398422" y="690.0" />
+      <point x="415.88979289940823" y="690.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Skeleton" target="com.codecool.dungeoncrawl.logic.Cell">
+      <point x="37.33333333333334" y="-15.0" />
+      <point x="93.33333333333334" y="525.0" />
+      <point x="169.49248027613402" y="525.0" />
+      <point x="-26.666666666666686" y="15.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.1" x="510.27272727272725" y="349.99999999999994" />
-  <SelectedNodes>
-    <node>com.codecool.dungeoncrawl.Tiles.Tile</node>
-  </SelectedNodes>
-  <Categories>
-    <Category>Methods</Category>
-    <Category>Constructors</Category>
-    <Category>Properties</Category>
-    <Category>Inner Classes</Category>
-    <Category>Fields</Category>
-  </Categories>
+  <settings layout="Hierarchic Group" zoom="0.6714285714285714" x="230.0" y="410.00000000000006" />
+  <SelectedNodes />
+  <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>
