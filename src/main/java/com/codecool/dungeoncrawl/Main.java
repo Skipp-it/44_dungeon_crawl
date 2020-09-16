@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class Main extends Application {
-    ArrayList<String> inventory = new ArrayList<>();
+    static ArrayList<String> inventory = new ArrayList<>();
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
@@ -34,11 +34,12 @@ public class Main extends Application {
     Label attackLabel = new Label();
     Label test = new Label();
     Button pickUpBtn = new Button("Pick Up Item");
-    Player player;
-    private Actor actor;
+//    Player player;
+//    private Actor actor;
 
 
     public static void main(String[] args) {
+//        inventory.add("shield");
         launch(args);
     }
 
@@ -49,7 +50,7 @@ public class Main extends Application {
         ui.setPadding(new Insets(10));
 
         ui.add(new Label("Health: "), 0, 0);
-        ui.add(new Label("Attack: "),0,1);
+        ui.add(new Label("Attack: "), 0, 1);
         ui.add(healthLabel, 1, 0);
         ui.add(attackLabel, 1, 1);
         ui.add(pickUpBtn, 0, 2);
@@ -122,17 +123,18 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 inventory.add(map.getPlayer().getCell().getItem().getTileName());
+                Tiles.updatePlayer();
                 StringBuilder inventar = new StringBuilder();
                 for (String i : inventory
                 ) {
                     inventar.append("1x ").append(i).append("\n");
                 }
-                if(map.getPlayer().getCell().getItem().getTileName().equals("sword")){
-                    map.getPlayer().setAttack(map.getPlayer().getAttack()+10);
+                if (map.getPlayer().getCell().getItem().getTileName().equals("sword")) {
+                    map.getPlayer().setAttack(map.getPlayer().getAttack() + 10);
                     attackLabel.setText(String.valueOf(map.getPlayer().getAttack()));
                 }
-                if(map.getPlayer().getCell().getItem().getTileName().equals("shield")){
-                    map.getPlayer().setHealth(map.getPlayer().getHealth()+20);
+                if (map.getPlayer().getCell().getItem().getTileName().equals("shield")) {
+                    map.getPlayer().setHealth(map.getPlayer().getHealth() + 20);
                     healthLabel.setText(String.valueOf(map.getPlayer().getHealth()));
                 }
                 map.getPlayer().getCell().setItem(null);

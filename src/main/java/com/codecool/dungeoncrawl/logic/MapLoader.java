@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.logic;
 
 
+import com.codecool.dungeoncrawl.logic.actors.Ghost;
 import com.codecool.dungeoncrawl.logic.items.Key;
 import com.codecool.dungeoncrawl.logic.items.Shield;
 import com.codecool.dungeoncrawl.logic.items.Sword;
@@ -54,6 +55,10 @@ public class MapLoader {
                         case '-':
                             cell.setType(CellType.FLOOR);
                             new Shield(cell);
+                            break;
+                        case '?':
+                            cell.setType(CellType.FLOOR);
+                            new Ghost(cell);
                             break;
 
                         default:
