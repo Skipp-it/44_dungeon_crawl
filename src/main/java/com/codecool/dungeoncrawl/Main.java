@@ -3,6 +3,8 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.Cowboy;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -14,6 +16,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.time.Duration;
 
 public class Main extends Application {
     GameMap map = MapLoader.loadMap();
@@ -29,6 +33,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
@@ -48,6 +53,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.show();
+
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
@@ -58,6 +64,7 @@ public class Main extends Application {
                 break;
             case DOWN:
                 map.getPlayer().move(0, 1);
+
                 refresh();
                 break;
             case LEFT:
@@ -72,8 +79,19 @@ public class Main extends Application {
     }
 
     private void refresh() {
+
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                Cell cell = map.getCell(x, y);
+                if (cell.getActor() != null) {
+                   if(cell.getActor() instanceof Cowboy){
+                       cell.getActor().move(0,1);
+                   }
+                }
+            }
+        }
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
@@ -84,6 +102,21 @@ public class Main extends Application {
                 }
             }
         }
+
+
+
+
+//
+//        if(cell.getActor() instanceof Cowboy || cell.getTileName().equals("wall")){
+//            cell.getActor().move(0,1);
+//        }
+
+
         healthLabel.setText("" + map.getPlayer().getHealth());
+
+
+
+
+
     }
 }
