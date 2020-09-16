@@ -1,11 +1,15 @@
 package com.codecool.dungeoncrawl.logic.actors;
 
+import com.codecool.dungeoncrawl.Main;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.Drawable;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
-    private int health = 10;
+    private int health;
+    private int actualHealth;
+    private int attack;
+
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -14,10 +18,25 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        cell.setActor(null);
-        nextCell.setActor(this);
-        cell = nextCell;
+        Actor nextActor= nextCell.getActor();
+        if(!nextCell.getTileName().equals("wall")){
+            if(nextActor!=null){
+                setHealth(health- nextActor.attack);
+                if(isDead())
+                    System.out.println("E mort");
+                System.out.println(nextActor.attack);
+            }
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        }
+        if(cell.getItem()!=null){
+            System.out.println(cell.getItem());
+        }
+
     }
+
+
 
     public int getHealth() {
         return health;
@@ -33,5 +52,22 @@ public abstract class Actor implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+    public int getActualHealth(){
+        return actualHealth;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+    public void setAttack(int attack){
+        this.attack = attack;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public boolean isDead(){
+        return this.health <= 0;
     }
 }
