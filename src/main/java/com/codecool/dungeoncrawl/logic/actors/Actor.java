@@ -21,15 +21,11 @@ public abstract class Actor implements Drawable {
             nextCell.setActor(this);
             cell = nextCell;
         }
+
         if(cell.getItem()!=null){
             System.out.println(cell.getItem());
-
-
         }
-
     }
-
-
 
     public int getHealth() {
         return health;

@@ -19,6 +19,7 @@ public class MapLoader {
         scanner.nextLine(); // empty line
 
         GameMap map = new GameMap(width, height, CellType.EMPTY);
+
         for (int y = 0; y < height; y++) {
             String line = scanner.nextLine();
             for (int x = 0; x < width; x++) {
@@ -49,6 +50,9 @@ public class MapLoader {
                         case '+':
                             cell.setType(CellType.FLOOR);
                             new Sword(cell);
+                            break;
+                        case 't':
+                            cell.setType(CellType.WALL);
                             break;
 
                         default:
