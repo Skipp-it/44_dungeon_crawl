@@ -1,12 +1,12 @@
 package com.codecool.dungeoncrawl;
 
 import com.codecool.dungeoncrawl.logic.Cell;
+import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 
 import com.codecool.dungeoncrawl.logic.actors.Cowboy;
-
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
@@ -29,9 +29,13 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 
+
 public class Main extends Application {
+    static String[] levels=new String[]{"/map.txt","/map2.txt"};
+    int level=0;
     static ArrayList<String> inventory = new ArrayList<>();
-    GameMap map = MapLoader.loadMap();
+
+    GameMap map = MapLoader.loadMap(levels[level]);
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
@@ -40,17 +44,15 @@ public class Main extends Application {
     Label attackLabel = new Label();
     Label test = new Label();
     Button pickUpBtn = new Button("Pick Up Item");
-//    Player player;
-//    private Actor actor;
+
 
 
     public static void main(String[] args) {
-//        inventory.add("shield");
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
@@ -105,8 +107,6 @@ public class Main extends Application {
 
     private void refresh() {
 
-        System.out.println(inventory.toString());
-
 
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -116,7 +116,14 @@ public class Main extends Application {
 
                 if (cell.getActor() != null) {
                    if(cell.getActor() instanceof Cowboy){
-                       cell.getActor().move(0,1);
+                       int max=1;
+                       int min=-1;
+                       int range=max-min+1;
+
+                       int rand1=(int)(Math.random()*range)+min;
+                       int rand2=(int)(Math.random()*range)+min;
+
+                       cell.getActor().move(rand1,rand2);
                    }
                 }
             }
@@ -124,7 +131,14 @@ public class Main extends Application {
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
+
                 if (cell.getActor() != null) {
+                    if(cell.getTileName().equals("openDoor")) {
+                        level=1;
+                        System.out.println("next level+"+ level);
+                      //TODO enter next level
+                    }
+
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
@@ -133,27 +147,21 @@ public class Main extends Application {
                 }
             }
         }
-
-
-
-
-
-
+        
 
         healthLabel.setText("" + map.getPlayer().getHealth());
 
-
-
-
-
         attackLabel.setText("" + map.getPlayer().getAttack());
-
-
         pickUpBtn.setDisable(map.getPlayer().getCell().isItem());
         pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 inventory.add(map.getPlayer().getCell().getItem().getTileName());
+                if(inventory.contains("key")){
+                    Tiles.openDoor();
+                    level++;
+
+                }
                 Tiles.updatePlayer();
                 StringBuilder inventar = new StringBuilder();
                 for (String i : inventory

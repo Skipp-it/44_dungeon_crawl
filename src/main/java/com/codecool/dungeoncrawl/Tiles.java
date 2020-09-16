@@ -1,6 +1,8 @@
 package com.codecool.dungeoncrawl;
 
+import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
+import com.codecool.dungeoncrawl.logic.MapLoader;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -8,7 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Tiles {
+
+    public static void openDoor(){
+        MapLoader.doorCell.setType(CellType.OPEN_DOOR);
+        tileMap.put("openDoor",new Tile(2,9));
+    }
+
     public static void updatePlayer(){
+
         if (Main.inventory.contains("sword") && Main.inventory.contains("shield")) {
             tileMap.put("player", new Tile(31, 0));
         } else if (Main.inventory.contains("sword")) {
@@ -38,16 +47,18 @@ public class Tiles {
     static {
         tileMap.put("empty", new Tile(0, 0));
         tileMap.put("wall", new Tile(10, 17));
-        tileMap.put("floor", new Tile(2, 0));
+        tileMap.put("floor", new Tile(15, 27));
         tileMap.put("player", new Tile(25, 0));
         tileMap.put("skeleton", new Tile(29, 6));
-
         tileMap.put("cowboy", new Tile(31, 2));
-
         tileMap.put("key", new Tile(16, 23));
         tileMap.put("sword", new Tile(0, 29));
         tileMap.put("shield", new Tile(5, 26));
         tileMap.put("ghost", new Tile(27, 6));
+        tileMap.put("closeDoor", new Tile(0, 11));
+        tileMap.put("tree", new Tile(1, 1));
+        tileMap.put("river", new Tile(8, 5));
+
 
     }
 

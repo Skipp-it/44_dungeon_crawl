@@ -3,8 +3,8 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Skeleton extends Actor {
-    private final int SK_HEALTH = 10;
-    private final int SK_ATTACK = 2;
+    private final int SK_HEALTH = 1000;
+    private final int SK_ATTACK = 5;
 
     public Skeleton(Cell cell) {
         super(cell);
