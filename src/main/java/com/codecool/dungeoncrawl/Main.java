@@ -17,17 +17,21 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import java.util.ArrayList;
+import java.util.Stack;
 
 
 public class Main extends Application {
 
     private ArrayList<Cowboy> cowboys;
     private static ArrayList<Cowboy> killedCowboys = new ArrayList<>();
-    static String[] levels = new String[]{"/map.txt", "/map2.txt"};
-    int level = 0;
+    static String[] levels = new String[]{"/mapGameOver.txt", "/map.txt", "/map2.txt"};
+    int level = 1;
 
     static ArrayList<String> inventory = new ArrayList<>();
 
@@ -41,15 +45,16 @@ public class Main extends Application {
     Label attackLabel = new Label();
     Label test = new Label();
     Button pickUpBtn = new Button("Pick Up Item");
+    Button resetBtn = new Button("Restart game");
 
     public static void main(String[] args) {
         launch(args);
     }
 
-
     @Override
     public void start(Stage primaryStage) {
         findCowboys();
+
 
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
@@ -63,6 +68,10 @@ public class Main extends Application {
         pickUpBtn.setDisable(true);
         ui.add(new Label("Inventory:"), 0, 3);
         ui.add(test, 0, 4);
+//        ui.add(resetBtn, 0, 6);
+//        resetBtn.setDisable(true);
+//        resetBtn.setDisable(map.getPlayer().isDead());
+
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(canvas);
@@ -76,6 +85,14 @@ public class Main extends Application {
 
         primaryStage.setTitle("Dungeon Crawl");
 
+
+        resetBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                level = 1;
+                refresh();
+            }
+        });
         healthLabel.setText("" + map.getPlayer().getHealth());
         attackLabel.setText("" + map.getPlayer().getAttack());
         pickUpBtn.setDisable(map.getPlayer().getCell().isItem());
@@ -111,27 +128,30 @@ public class Main extends Application {
 
 
     private void onKeyPressed(KeyEvent keyEvent) {
-        switch (keyEvent.getCode()) {
-            case UP:
-                map.getPlayer().move(0, -1);
-                refresh();
-                break;
-            case DOWN:
-                map.getPlayer().move(0, 1);
+        if (!map.getPlayer().isDead()) {
+            switch (keyEvent.getCode()) {
+                case UP:
+                    map.getPlayer().move(0, -1);
+                    refresh();
+                    break;
+                case DOWN:
+                    map.getPlayer().move(0, 1);
 
-                refresh();
-                break;
-            case LEFT:
-                map.getPlayer().move(-1, 0);
-                refresh();
-                break;
-            case RIGHT:
-                map.getPlayer().move(1, 0);
-                refresh();
-                break;
+                    refresh();
+                    break;
+                case LEFT:
+                    map.getPlayer().move(-1, 0);
+                    refresh();
+                    break;
+                case RIGHT:
+                    map.getPlayer().move(1, 0);
+                    refresh();
+                    break;
+            }
+            moveCowboys();
+            interactWithCell();
+            refresh();
         }
-        moveCowboys();
-        interactWithCell();
     }
 
     private void interactWithCell() {
@@ -141,6 +161,11 @@ public class Main extends Application {
         healthLabel.setText("" + map.getPlayer().getHealth());
 
         Cell cell = map.getPlayer().getCell();
+        if (map.getPlayer().isDead()) {
+            map = MapLoader.loadMap(levels[0]);
+            map.getPlayer().setHealth(0);
+            refresh();
+        }
         if (cell.getTileName().equals("openDoor")) {
             Player oldPlayer = map.getPlayer();
             map = MapLoader.loadMap(levels[++level]);
@@ -156,7 +181,6 @@ public class Main extends Application {
             refresh();
         }
     }
-
 
 
     private void findCowboys() {
@@ -198,28 +222,26 @@ public class Main extends Application {
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        int deltaX = map.getWidth() / 2 - map.getPlayer().getX()- offsetX;
-        int deltaY = map.getHeight() / 2 - map.getPlayer().getY()-offsetY;
+        int deltaX = map.getWidth() / 2 - map.getPlayer().getX() - offsetX;
+        int deltaY = map.getHeight() / 2 - map.getPlayer().getY() - offsetY;
 
-        if (map.getPlayer().getX()<offsetX){deltaX=0;}
-        if (map.getPlayer().getY()<offsetY){deltaY=0;}
-
-        if (deltaX>=8){deltaX=0;}
-        if (deltaY>0){deltaY=0;}
-
-        if (deltaX< -2*offsetX){deltaX = -2*offsetX;}
-        if (deltaY< -2*offsetY){deltaY = -2*offsetY;}
+        if (map.getPlayer().getX() < offsetX) deltaX = 0;
+        if (map.getPlayer().getY() < offsetY) deltaY = 0;
+        if (deltaX >= 8) deltaX = 0;
+        if (deltaY > 0) deltaY = 0;
+        if (deltaX < -2 * offsetX) deltaX = -2 * offsetX;
+        if (deltaY < -2 * offsetY) deltaY = -2 * offsetY;
 
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
 
                 if (cell.getActor() != null) {
-                    Tiles.drawTile(context, cell.getActor(), x+deltaX, y+deltaY);
+                    Tiles.drawTile(context, cell.getActor(), x + deltaX, y + deltaY);
                 } else if (cell.getItem() != null) {
-                    Tiles.drawTile(context, cell.getItem(), x+deltaX, y+deltaY);
+                    Tiles.drawTile(context, cell.getItem(), x + deltaX, y + deltaY);
                 } else {
-                    Tiles.drawTile(context, cell, x+deltaX, y+deltaY);
+                    Tiles.drawTile(context, cell, x + deltaX, y + deltaY);
                 }
             }
         }

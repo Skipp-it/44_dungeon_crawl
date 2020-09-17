@@ -21,14 +21,16 @@ public abstract class Actor implements Drawable {
             if (!nextCell.getTileName().equals("wall") && !nextCell.getTileName().equals("closeDoor")) {
                 if (nextActor != null && cell.getActor().getTileName().equals("player")) {
 //                    TODO damage based on attacker
+                    if (nextActor instanceof Cowboy && nextCell != cell) {
+                        Main.killCowboy((Cowboy) nextActor);
+                    }
                     cell.getActor().setHealth(health - nextActor.attack);
-                    if (isDead())
+                    if (isDead()) {
                         System.out.println("E mort");
-                    System.out.println(nextActor.attack);
+                        System.out.println(nextActor.attack);
+                    }
                 }
-                if (nextActor instanceof Cowboy && nextCell != cell) {
-                    Main.killCowboy((Cowboy) nextActor);
-                }
+
                 cell.setActor(null);
                 nextCell.setActor(this);
                 cell = nextCell;

@@ -6,7 +6,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 public class Cowboy extends Actor{
 
     private final int SK_HEALTH = 10;
-    private final int SK_ATTACK = 20;
+    private final int SK_ATTACK = 10;
     public Cowboy(Cell cell) {
         super(cell);
         this.setHealth(SK_HEALTH);
