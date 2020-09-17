@@ -6,7 +6,8 @@ import com.codecool.dungeoncrawl.logic.Drawable;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
-    private int health = 10;
+    private int health;
+    private int attack;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -15,15 +16,23 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        Actor nextActor= nextCell.getActor();
-        if(!nextCell.getTileName().equals("wall") && nextActor==null){
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
-        }
-
-        if(cell.getItem()!=null){
-            System.out.println(cell.getItem());
+        if (nextCell != null){
+            Actor nextActor = nextCell.getActor();
+            if (!nextCell.getTileName().equals("wall") && !nextCell.getTileName().equals("closeDoor")) {
+                if (nextActor != null && cell.getActor().getTileName().equals("player")) {
+//                    TODO damage based on attacker
+                    cell.getActor().setHealth(health - nextActor.attack);
+                    if (isDead())
+                        System.out.println("E mort");
+                    System.out.println(nextActor.attack);
+                }
+                if (nextActor instanceof Cowboy && nextCell != cell) {
+                    Main.killCowboy((Cowboy) nextActor);
+                }
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
         }
     }
 
@@ -41,5 +50,21 @@ public abstract class Actor implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public boolean isDead() {
+        return this.health <= 0;
     }
 }
