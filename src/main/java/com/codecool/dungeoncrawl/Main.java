@@ -1,15 +1,10 @@
 package com.codecool.dungeoncrawl;
 
 import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
-import com.codecool.dungeoncrawl.logic.actors.Actor;
-
 import com.codecool.dungeoncrawl.logic.actors.Cowboy;
 import com.codecool.dungeoncrawl.logic.actors.Player;
-import com.codecool.dungeoncrawl.logic.items.Item;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,14 +20,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-
 import java.util.ArrayList;
 
 
-
 public class Main extends Application {
-    static String[] levels=new String[]{"/map.txt","/map2.txt"};
-    int level=0;
+    private ArrayList<Cowboy> cowboys;
+    private static ArrayList<Cowboy> killedCowboys = new ArrayList<>();
+    static String[] levels = new String[]{"/map.txt", "/map2.txt"};
+    int level = 0;
     static ArrayList<String> inventory = new ArrayList<>();
 
     GameMap map = MapLoader.loadMap(levels[level]);
@@ -46,13 +41,14 @@ public class Main extends Application {
     Button pickUpBtn = new Button("Pick Up Item");
 
 
-
     public static void main(String[] args) {
         launch(args);
     }
 
+
     @Override
     public void start(Stage primaryStage) {
+        findCowboys();
 
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
@@ -79,9 +75,42 @@ public class Main extends Application {
         scene.setOnKeyPressed(this::onKeyPressed);
 
         primaryStage.setTitle("Dungeon Crawl");
-        primaryStage.show();
 
+        healthLabel.setText("" + map.getPlayer().getHealth());
+        attackLabel.setText("" + map.getPlayer().getAttack());
+        pickUpBtn.setDisable(map.getPlayer().getCell().isItem());
+        pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                inventory.add(map.getPlayer().getCell().getItem().getTileName());
+                if (inventory.contains("key")) {
+                    Tiles.openDoor();
+                }
+                Tiles.updatePlayer();
+                StringBuilder inventar = new StringBuilder();
+                for (String i : inventory) {
+                    inventar.append("1x ").append(i).append("\n");
+                }
+                if (map.getPlayer().getCell().getItem().getTileName().equals("sword")) {
+                    map.getPlayer().setAttack(map.getPlayer().getAttack() + 10);
+                    attackLabel.setText(String.valueOf(map.getPlayer().getAttack()));
+                }
+                if (map.getPlayer().getCell().getItem().getTileName().equals("shield")) {
+                    map.getPlayer().setHealth(map.getPlayer().getHealth() + 20);
+                    healthLabel.setText(String.valueOf(map.getPlayer().getHealth()));
+                }
+                map.getPlayer().getCell().setItem(null);
+                pickUpBtn.setDisable(true);
+                test.setText(inventar.toString());
+                refresh();
+
+
+            }
+        });
+
+        primaryStage.show();
     }
+
 
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
@@ -103,42 +132,74 @@ public class Main extends Application {
                 refresh();
                 break;
         }
+        moveCowboys();
+        interactWithCell();
+
+    }
+
+    private void interactWithCell() {
+
+        pickUpBtn.setDisable(map.getPlayer().getCell().isItem());
+        attackLabel.setText("" + map.getPlayer().getAttack());
+        healthLabel.setText("" + map.getPlayer().getHealth());
+
+        Cell cell = map.getPlayer().getCell();
+        if (cell.getTileName().equals("openDoor")) {
+            Player oldPlayer = map.getPlayer();
+            map = MapLoader.loadMap(levels[++level]);
+            findCowboys();
+            map.getPlayer().setHealth(oldPlayer.getHealth());
+            map.getPlayer().setAttack(oldPlayer.getAttack());
+            inventory.remove("key");
+            StringBuilder inventar = new StringBuilder();
+            for (String i : inventory) {
+                inventar.append("1x ").append(i).append("\n");
+            }
+            test.setText(inventar.toString());
+            refresh();
+        }
+    }
+
+
+    private void findCowboys() {
+        cowboys = new ArrayList<>();
+        for (int x = 0; x < map.getWidth(); x++) {
+            for (int y = 0; y < map.getHeight(); y++) {
+                Cell cell = map.getCell(x, y);
+                if (cell.getActor() != null && cell.getActor() instanceof Cowboy) {
+                    cowboys.add((Cowboy) cell.getActor());
+                }
+            }
+        }
+    }
+
+    private void moveCowboys() {
+        int max = 1;
+        int min = -1;
+        int range = max - min + 1;
+        for (Cowboy cowboy : cowboys) {
+            int rand1 = (int) (Math.random() * range) + min;
+            int rand2 = (int) (Math.random() * range) + min;
+            cowboy.move(rand1, rand2);
+        }
+        for (Cowboy killedCowboy : killedCowboys) {
+
+            cowboys.remove(killedCowboy);
+        }
+        killedCowboys = new ArrayList<>();
+    }
+
+    public static void killCowboy(Cowboy cowboy) {
+        killedCowboys.add(cowboy);
     }
 
     private void refresh() {
-
-
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
-
                 if (cell.getActor() != null) {
-                   if(cell.getActor() instanceof Cowboy){
-                       int max=1;
-                       int min=-1;
-                       int range=max-min+1;
-
-                       int rand1=(int)(Math.random()*range)+min;
-                       int rand2=(int)(Math.random()*range)+min;
-
-                       cell.getActor().move(rand1,rand2);
-                   }
-                }
-            }
-        }
-        for (int x = 0; x < map.getWidth(); x++) {
-            for (int y = 0; y < map.getHeight(); y++) {
-                Cell cell = map.getCell(x, y);
-
-                if (cell.getActor() != null) {
-                    if(cell.getTileName().equals("openDoor")) {
-                        level=1;
-                        System.out.println("next level+"+ level);
-                      //TODO enter next level
-                    }
-
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 } else if (cell.getItem() != null) {
                     Tiles.drawTile(context, cell.getItem(), x, y);
@@ -147,44 +208,7 @@ public class Main extends Application {
                 }
             }
         }
-        
-
-        healthLabel.setText("" + map.getPlayer().getHealth());
-
-        attackLabel.setText("" + map.getPlayer().getAttack());
-        pickUpBtn.setDisable(map.getPlayer().getCell().isItem());
-        pickUpBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                inventory.add(map.getPlayer().getCell().getItem().getTileName());
-                if(inventory.contains("key")){
-                    Tiles.openDoor();
-                    level++;
-
-                }
-                Tiles.updatePlayer();
-                StringBuilder inventar = new StringBuilder();
-                for (String i : inventory
-                ) {
-                    inventar.append("1x ").append(i).append("\n");
-                }
-                if (map.getPlayer().getCell().getItem().getTileName().equals("sword")) {
-                    map.getPlayer().setAttack(map.getPlayer().getAttack() + 10);
-                    attackLabel.setText(String.valueOf(map.getPlayer().getAttack()));
-                }
-                if (map.getPlayer().getCell().getItem().getTileName().equals("shield")) {
-                    map.getPlayer().setHealth(map.getPlayer().getHealth() + 20);
-                    healthLabel.setText(String.valueOf(map.getPlayer().getHealth()));
-                }
-                map.getPlayer().getCell().setItem(null);
-                pickUpBtn.setDisable(true);
-                test.setText(inventar.toString());
-                refresh();
-
-
-            }
-        });
-
 
     }
+
 }
