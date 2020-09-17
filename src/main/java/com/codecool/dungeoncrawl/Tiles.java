@@ -3,6 +3,8 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.actors.Actor;
+import com.codecool.dungeoncrawl.logic.actors.Player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -10,15 +12,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Tiles {
+    private static Actor player;
 
-    public static void openDoor(){
+
+    public static void openDoor() {
         MapLoader.doorCell.setType(CellType.OPEN_DOOR);
-        tileMap.put("openDoor",new Tile(2,9));
+        tileMap.put("openDoor", new Tile(2, 9));
     }
 
-    public static void updatePlayer(){
+    private static int countSwords() {
+        int nrSwords = 0;
+        for (int i = 0; i < Main.inventory.size(); i++) {
+            if (Main.inventory.get(i).equals("sword")) {
+                nrSwords++;
+            }
+        }
+        return nrSwords;
+    }
 
-        if (Main.inventory.contains("sword") && Main.inventory.contains("shield")) {
+    public static void updatePlayer() {
+
+        if ( player!= null && player.isDead()) {
+            tileMap.put("player", new Tile(1, 14));
+        } else if (Main.inventory.contains("sword") && countSwords() > 1) {
+            tileMap.put("player", new Tile(30, 2));
+        } else if (Main.inventory.contains("sword") && Main.inventory.contains("shield")) {
             tileMap.put("player", new Tile(31, 0));
         } else if (Main.inventory.contains("sword")) {
             tileMap.put("player", new Tile(26, 0));
@@ -27,11 +45,14 @@ public class Tiles {
         } else {
             tileMap.put("player", new Tile(25, 0));
         }
+
     }
+
     public static int TILE_WIDTH = 32;
 
     private static Image tileset = new Image("/tiles.png", 543 * 2, 543 * 2, true, false);
     private static Map<String, Tile> tileMap = new HashMap<>();
+
 
     public static class Tile {
         public final int x, y, w, h;
@@ -58,13 +79,15 @@ public class Tiles {
         tileMap.put("closeDoor", new Tile(0, 11));
         tileMap.put("tree", new Tile(1, 1));
         tileMap.put("river", new Tile(8, 5));
-
-
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {
         Tile tile = tileMap.get(d.getTileName());
         context.drawImage(tileset, tile.x, tile.y, tile.w, tile.h,
                 x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH);
+    }
+
+    public static void setPlayer(Actor player) {
+        Tiles.player = player;
     }
 }

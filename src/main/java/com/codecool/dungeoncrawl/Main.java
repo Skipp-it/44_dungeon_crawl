@@ -17,13 +17,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
-import java.util.Stack;
 
 
 public class Main extends Application {
@@ -32,13 +28,11 @@ public class Main extends Application {
     private static ArrayList<Cowboy> killedCowboys = new ArrayList<>();
     static String[] levels = new String[]{"/mapGameOver.txt", "/map.txt", "/map2.txt"};
     int level = 1;
-
     static ArrayList<String> inventory = new ArrayList<>();
-
     GameMap map = MapLoader.loadMap(levels[level]);
     Canvas canvas = new Canvas(
-            ((int) (map.getWidth() / 2)) * Tiles.TILE_WIDTH,
-            ((int) (map.getHeight() / 2)) * Tiles.TILE_WIDTH);
+            map.getWidth() / 2 * Tiles.TILE_WIDTH,
+            map.getHeight() / 2 * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
 
@@ -54,12 +48,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         findCowboys();
-
-
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
-
         ui.add(new Label("Health: "), 0, 0);
         ui.add(new Label("Attack: "), 0, 1);
         ui.add(healthLabel, 1, 0);
@@ -68,10 +59,8 @@ public class Main extends Application {
         pickUpBtn.setDisable(true);
         ui.add(new Label("Inventory:"), 0, 3);
         ui.add(test, 0, 4);
-//        ui.add(resetBtn, 0, 6);
-//        resetBtn.setDisable(true);
-//        resetBtn.setDisable(map.getPlayer().isDead());
-
+        ui.add(resetBtn, 0, 6);
+        resetBtn.setDisable(true);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(canvas);
@@ -90,7 +79,11 @@ public class Main extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 level = 1;
+                map = MapLoader.loadMap(levels[level]);
+                findCowboys();
+                Tiles.setPlayer(map.getPlayer());
                 refresh();
+                resetBtn.setDisable(true);
             }
         });
         healthLabel.setText("" + map.getPlayer().getHealth());
@@ -104,10 +97,7 @@ public class Main extends Application {
                     Tiles.openDoor();
                 }
                 Tiles.updatePlayer();
-                StringBuilder inventar = new StringBuilder();
-                for (String i : inventory) {
-                    inventar.append("1x ").append(i).append("\n");
-                }
+                refreshInventoryDisplay();
                 if (map.getPlayer().getCell().getItem().getTileName().equals("sword")) {
                     map.getPlayer().setAttack(map.getPlayer().getAttack() + 10);
                     attackLabel.setText(String.valueOf(map.getPlayer().getAttack()));
@@ -118,14 +108,12 @@ public class Main extends Application {
                 }
                 map.getPlayer().getCell().setItem(null);
                 pickUpBtn.setDisable(true);
-                test.setText(inventar.toString());
                 refresh();
             }
         });
 
         primaryStage.show();
     }
-
 
     private void onKeyPressed(KeyEvent keyEvent) {
         if (!map.getPlayer().isDead()) {
@@ -136,7 +124,6 @@ public class Main extends Application {
                     break;
                 case DOWN:
                     map.getPlayer().move(0, 1);
-
                     refresh();
                     break;
                 case LEFT:
@@ -148,9 +135,13 @@ public class Main extends Application {
                     refresh();
                     break;
             }
+            deleteCowboys();
             moveCowboys();
             interactWithCell();
             refresh();
+            if (map.getPlayer().isDead()){
+                resetBtn.setDisable(false);
+            }
         }
     }
 
@@ -159,11 +150,12 @@ public class Main extends Application {
         pickUpBtn.setDisable(map.getPlayer().getCell().isItem());
         attackLabel.setText("" + map.getPlayer().getAttack());
         healthLabel.setText("" + map.getPlayer().getHealth());
-
         Cell cell = map.getPlayer().getCell();
         if (map.getPlayer().isDead()) {
             map = MapLoader.loadMap(levels[0]);
             map.getPlayer().setHealth(0);
+            Tiles.setPlayer(map.getPlayer());
+            Tiles.updatePlayer();
             refresh();
         }
         if (cell.getTileName().equals("openDoor")) {
@@ -173,15 +165,18 @@ public class Main extends Application {
             map.getPlayer().setHealth(oldPlayer.getHealth());
             map.getPlayer().setAttack(oldPlayer.getAttack());
             inventory.remove("key");
-            StringBuilder inventar = new StringBuilder();
-            for (String i : inventory) {
-                inventar.append("1x ").append(i).append("\n");
-            }
-            test.setText(inventar.toString());
+            refreshInventoryDisplay();
             refresh();
         }
     }
 
+    private void refreshInventoryDisplay() {
+        StringBuilder inventoryDisplay = new StringBuilder();
+        for (String i : inventory) {
+            inventoryDisplay.append("1x ").append(i).append("\n");
+        }
+        test.setText(inventoryDisplay.toString());
+    }
 
     private void findCowboys() {
         cowboys = new ArrayList<>();
@@ -204,6 +199,10 @@ public class Main extends Application {
             int rand2 = (int) (Math.random() * range) + min;
             cowboy.move(rand1, rand2);
         }
+        deleteCowboys();
+    }
+
+    private void deleteCowboys() {
         for (Cowboy killedCowboy : killedCowboys) {
 
             cowboys.remove(killedCowboy);

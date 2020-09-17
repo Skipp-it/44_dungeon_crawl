@@ -48,12 +48,10 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             map.setPlayer(new Player(cell));
                             break;
-
                         case 'c':
                             cell.setType(CellType.FLOOR);
                             new Cowboy(cell);
                             break;
-
                         case 'k':
                             cell.setType(CellType.FLOOR);
                             new Key(cell);
