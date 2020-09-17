@@ -21,7 +21,7 @@ public class MapLoader {
         int width = scanner.nextInt();
         int height = scanner.nextInt();
 
-        scanner.nextLine(); // empty line
+        scanner.nextLine();
 
         GameMap map = new GameMap(width, height, CellType.EMPTY);
 

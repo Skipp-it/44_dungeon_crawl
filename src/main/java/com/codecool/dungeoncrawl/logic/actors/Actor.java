@@ -23,7 +23,6 @@ public abstract class Actor implements Drawable {
                 if (nextActor != null && cell.getActor().getTileName().equals("player")) {
                     if (nextActor instanceof Cowboy) {
                         Main.killCowboy((Cowboy) nextActor);
-
                     }
                     cell.getActor().setHealth(health - nextActor.attack);
                     nextCell.setActor(null);
@@ -31,11 +30,9 @@ public abstract class Actor implements Drawable {
                 if (nextActor instanceof Cowboy && nextCell != cell) {
                     Main.killCowboy((Cowboy) nextActor);
                 }
-
                 cell.setActor(null);
                 nextCell.setActor(this);
                 cell = nextCell;
-
             }
         }
     }
