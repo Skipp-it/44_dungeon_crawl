@@ -19,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
 
@@ -64,7 +65,6 @@ public class Main extends Application {
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(canvas);
-
         borderPane.setRight(ui);
 
         Scene scene = new Scene(borderPane);
@@ -139,7 +139,7 @@ public class Main extends Application {
             moveCowboys();
             interactWithCell();
             refresh();
-            if (map.getPlayer().isDead()){
+            if (map.getPlayer().isDead()) {
                 resetBtn.setDisable(false);
             }
         }

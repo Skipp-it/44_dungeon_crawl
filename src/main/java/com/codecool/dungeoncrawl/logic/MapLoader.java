@@ -9,10 +9,12 @@ import com.codecool.dungeoncrawl.logic.items.Key;
 import com.codecool.dungeoncrawl.logic.items.Shield;
 import com.codecool.dungeoncrawl.logic.items.Sword;
 
+
 import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
+
     public static Cell doorCell;
     public static GameMap loadMap(String level) {
 
@@ -24,6 +26,7 @@ public class MapLoader {
         scanner.nextLine();
 
         GameMap map = new GameMap(width, height, CellType.EMPTY);
+
 
         for (int y = 0; y < height; y++) {
             String line = scanner.nextLine();

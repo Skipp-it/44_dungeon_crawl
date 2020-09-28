@@ -31,7 +31,7 @@ public class Tiles {
 
     public static void updatePlayer() {
 
-        if ( player!= null && player.isDead()) {
+        if (player != null && player.isDead()) {
             tileMap.put("player", new Tile(1, 14));
         } else if (Main.inventory.contains("sword") && countSwords() > 1) {
             tileMap.put("player", new Tile(30, 2));
@@ -44,7 +44,6 @@ public class Tiles {
         } else {
             tileMap.put("player", new Tile(25, 0));
         }
-
     }
 
     public static int TILE_WIDTH = 32;
@@ -52,9 +51,9 @@ public class Tiles {
     private static Image tileset = new Image("/tiles.png", 543 * 2, 543 * 2, true, false);
     private static Map<String, Tile> tileMap = new HashMap<>();
 
-
     public static class Tile {
         public final int x, y, w, h;
+
 
         Tile(int i, int j) {
             x = i * (TILE_WIDTH + 2);
@@ -89,4 +88,5 @@ public class Tiles {
     public static void setPlayer(Actor player) {
         Tiles.player = player;
     }
+
 }
