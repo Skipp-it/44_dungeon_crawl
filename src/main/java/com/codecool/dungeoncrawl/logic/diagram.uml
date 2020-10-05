@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+<<<<<<< HEAD
+    <node x="65.50000000000001" y="102.0">com.codecool.dungeoncrawl.logic.actors.Actor</node>
+    <node x="297.5" y="0.0">com.codecool.dungeoncrawl.logic.MapLoader</node>
+    <node x="156.0" y="301.0">com.codecool.dungeoncrawl.logic.GameMap</node>
+    <node x="105.25000000000001" y="0.0">com.codecool.dungeoncrawl.logic.Drawable</node>
+    <node x="0.0" y="204.0">com.codecool.dungeoncrawl.logic.actors.Player</node>
+    <node x="0.0" y="301.0">com.codecool.dungeoncrawl.logic.CellType</node>
+    <node x="0.0" y="398.0">com.codecool.dungeoncrawl.Main</node>
+    <node x="115.00000000000001" y="204.0">com.codecool.dungeoncrawl.logic.actors.Skeleton</node>
+    <node x="125.0" y="398.0">com.codecool.dungeoncrawl.App</node>
+    <node x="172.5" y="102.0">com.codecool.dungeoncrawl.logic.Cell</node>
+    <node x="304.0" y="301.0">com.codecool.dungeoncrawl.Tiles</node>
+=======
+<<<<<<< HEAD
+    <node x="0.0" y="471.0">com.codecool.dungeoncrawl.logic.GameMap</node>
+    <node x="0.0" y="673.0">com.codecool.dungeoncrawl.logic.MapLoader</node>
+    <node x="276.25" y="0.0">com.codecool.dungeoncrawl.logic.Drawable</node>
+    <node x="166.99999999999997" y="341.0">com.codecool.dungeoncrawl.logic.actors.Player</node>
+    <node x="183.0" y="673.0">com.codecool.dungeoncrawl.Main</node>
+    <node x="0.0" y="341.0">com.codecool.dungeoncrawl.logic.actors.Skeleton</node>
+    <node x="316.0" y="673.0">com.codecool.dungeoncrawl.App</node>
+    <node x="174.49999999999997" y="122.0">com.codecool.dungeoncrawl.logic.actors.Actor</node>
+    <node x="285.0" y="555.0">com.codecool.dungeoncrawl.Tiles.Tile</node>
+    <node x="461.0" y="471.0">com.codecool.dungeoncrawl.logic.CellType</node>
+    <node x="327.0" y="341.0">com.codecool.dungeoncrawl.logic.actors.Cowboy</node>
+    <node x="319.5" y="110.0">com.codecool.dungeoncrawl.logic.Cell</node>
+    <node x="301.5" y="471.0">com.codecool.dungeoncrawl.Tiles</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Actor" target="com.codecool.dungeoncrawl.logic.Drawable">
+      <point x="2.8421709430404007E-14" y="-78.5" />
+      <point x="237.0" y="85.0" />
+      <point x="311.25" y="85.0" />
+      <point x="-35.0" y="30.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Skeleton" target="com.codecool.dungeoncrawl.logic.actors.Actor">
+      <point x="2.8421709430404007E-14" y="-42.5" />
+      <point x="73.50000000000003" y="316.0" />
+      <point x="195.33333333333331" y="316.0" />
+      <point x="-41.66666666666666" y="78.5" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.Cell" target="com.codecool.dungeoncrawl.logic.Drawable">
+      <point x="0.0" y="-90.5" />
+      <point x="455.5" y="85.0" />
+      <point x="381.25" y="85.0" />
+      <point x="35.0" y="30.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Player" target="com.codecool.dungeoncrawl.logic.actors.Actor">
+      <point x="0.0" y="-42.5" />
+      <point x="0.0" y="78.5" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.Tiles.Tile" target="com.codecool.dungeoncrawl.Tiles">
+      <point x="0.0" y="-30.0" />
+      <point x="0.0" y="17.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Cowboy" target="com.codecool.dungeoncrawl.logic.actors.Actor">
+      <point x="0.0" y="-42.5" />
+      <point x="398.0" y="316.0" />
+      <point x="278.66666666666663" y="316.0" />
+      <point x="41.66666666666666" y="78.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.1" x="643.6363636363636" y="328.6363636363636" />
+  <SelectedNodes>
+    <node>com.codecool.dungeoncrawl.logic.Cell</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+  </Categories>
+=======
+    <node x="91.8783284023668" y="80.0">com.codecool.dungeoncrawl.logic.actors.Actor</node>
+    <node x="209.12191814595656" y="630.0">com.codecool.dungeoncrawl.logic.MapLoader</node>
+    <node x="214.609097633136" y="320.0">com.codecool.dungeoncrawl.logic.GameMap</node>
+    <node x="79.87832840236683" y="0.0">com.codecool.dungeoncrawl.logic.Drawable</node>
+    <node x="264.82051282051276" y="200.0">com.codecool.dungeoncrawl.logic.CellType</node>
+    <node x="148.82051282051276" y="200.0">com.codecool.dungeoncrawl.logic.actors.Player</node>
+    <node x="312.456114398422" y="710.0">com.codecool.dungeoncrawl.Main</node>
+    <node x="0.0" y="550.0">com.codecool.dungeoncrawl.logic.actors.Skeleton</node>
+    <node x="316.456114398422" y="790.0">com.codecool.dungeoncrawl.App</node>
+    <node x="156.1591469428007" y="470.0">com.codecool.dungeoncrawl.logic.Cell</node>
+    <node x="371.88979289940823" y="80.0">com.codecool.dungeoncrawl.Tiles</node>
+>>>>>>> 9c5676ff7833ea2c1f97ea63f003ea755da7f7a4
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Actor" target="com.codecool.dungeoncrawl.logic.Drawable">
+      <point x="0.0" y="-26.0" />
+      <point x="109.00000000000001" y="77.0" />
+      <point x="133.0" y="77.0" />
+      <point x="-27.75" y="26.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.Cell" target="com.codecool.dungeoncrawl.logic.Drawable">
+      <point x="0.0" y="-26.0" />
+      <point x="212.5" y="77.0" />
+      <point x="188.5" y="77.0" />
+      <point x="27.75" y="26.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Skeleton" target="com.codecool.dungeoncrawl.logic.actors.Actor">
+      <point x="0.0" y="-26.0" />
+      <point x="170.5" y="179.0" />
+      <point x="130.75" y="179.0" />
+      <point x="21.75" y="26.0" />
+    </edge>
+    <edge source="com.codecool.dungeoncrawl.logic.actors.Player" target="com.codecool.dungeoncrawl.logic.actors.Actor">
+      <point x="0.0" y="-26.0" />
+      <point x="47.5" y="179.0" />
+      <point x="87.25000000000001" y="179.0" />
+      <point x="-21.75" y="26.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0714285714285712" x="299.9123904881102" y="386.1911764705884" />
+  <SelectedNodes />
+  <Categories />
+>>>>>>> 893d70f1d7708ca33f763c7cb42751c638a65e4a
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
