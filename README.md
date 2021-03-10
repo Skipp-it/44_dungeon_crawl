@@ -1,34 +1,4 @@
 
-# Dungeon Crawl (sprint 1)
-
-## Story
-
-[Roguelikes](https://en.wikipedia.org/wiki/Roguelike) are one of the oldest
-types of video games, the earliest ones were made in the 70s, they were inspired
-a lot by tabletop RPGs. Roguelikes have the following in common usually:
-
-- They are tile-based.
-- The game is divided into turns, e.g. you make one action, then the other
-  entities (monsters, allies, etc. controlled by the CPU) make one.
-- Usually the task is to explore a labyrinth and retrieve some treasure from its
-  bottom.
-- They feature permadeath: if you die its game over, you need to start from the
-  beginning again.
-- Are heavily using procedural generation: Levels, monster placement, items,..
-  are randomized, so the game does not get boring.
-
-Your task will be to create a roguelike! You can deviate from the rules above,
-the important bit is that it should be fun!
-
-## What are you going to learn?
-
-- Get more practice in OOP
-- Design patterns: layer separation (All of the game logic, i.e., player
-  movement, game rules, and so on), is in the `logic` package, completely
-  independent of user interface code. In principle, you could implement a
-  completely different interface e.g. terminal, web, Virtual Reality, etc. for
-  the same logic code.)
-
 ## Tasks
 
 1. Understand the existing code, classes and tests so you can make changes. You should do this before planning everything else. It will help you understand what is going on.
@@ -91,29 +61,6 @@ the important bit is that it should be fun!
 
 # Dungeon Crawl (sprint 2)
 
-## Story
-
-Last week you created a pretty good [Roguelike](https://en.wikipedia.org/wiki/Roguelike) game. It already has some features but the players have no opportunity to save their games. It can be annoying especially when you have to leave the game aside suddenly.
-
-The gamer community bragging for saving functionality and some other new interesting ideas like:
-
-- sharing game with each other
-- maps of different sizes
-- player tracking camera movement
-
-The management is handing out a **prioritized list** of new user stories that should be appended to the unfinished stories from last week in your product backlog. Try to estimate these new stories as well, and based on the estimations pick the stories your team can finish in this sprint.
-
-> Using database for saving game state feature is a business critical item which overrides every other priority now!
-
-Let's continue this entertaining project, and make our players happier!
-
-## What are you going to learn?
-
-- Serialization of objects
-- Communicating with database
-- Writing unit tests for your classes
-- Design pattern: **Data Access Object**
-
 ## Tasks
 
 1. Create a new sprint from the existing backlog. Last week you had a long list of stories, a few new stories this week.
@@ -157,61 +104,3 @@ Let's continue this entertaining project, and make our players happier!
 - methods: `<the name of the tested method>_<expected input / tested state>_<expected behavior>`
     - Every test class has at least one negative test case (and more if it's plausible)
     - Code coverage of self-created business logic classes is above 90%
-
-
-## General requirements
-
-None
-
-## Hints
-
-
-- Start with the smaller tasks, and then move into the more difficult ones
-- Before making any changes make sure you understand the whole starting code
-- Open the project in IntelliJ IDEA. This is a Maven project, so you will need to
-open `pom.xml`. The project is using JavaFX, use the `javafx` maven plugin to
-build and run the program. Build: `mvn javafx:compile`, run: `mvn javafx:run`.
-
-## Starting your project
-
-To start your project click [this link](https://journey.code.cool/v2/project/team/blueprint/dungeon-crawl-1/java), and make sure to **select or create your team**.
-
-## Background materials
-
-- <i class="far fa-open_book"></i> [RogueBasin, a wiki with lots of resources on Roguelike creation](http://roguebasin.com/index.php?title=Articles)
-- <i class="far fa-exclamation"></i> [Basics of OOP](https://learn.code.cool/full-stack/#/../pages/oop/basics-of-object-oriented-programming)
-- <i class="far fa-exclamation"></i> [UML diagrams](https://learn.code.cool/full-stack/#/../pages/general/uml-unified-modeling-language)
-- <i class="far fa-exclamation"></i> [How to design classes](https://learn.code.cool/full-stack/#/../pages/java/how-to-design-classes)
-- <i class="far fa-open_book"></i> [JavaFX](https://en.wikipedia.org/wiki/JavaFX) You don't need to dwelve into this, most of the GUI is ready
-- <i class="far fa-open_book"></i> [JavaFX Tutorial](http://tutorials.jenkov.com/javafx/index.html) You don't need to dwelve into this, most of the GUI is ready
-
-- Break the backlog items into smaller tasks so that you can work in parallel
-- The given DB schema is only an example. Probably you need to alter is according to the requirements. For instance it doesn't contain any info about inventory or discovered maps by the player
-- Write as many unit tests as possible to cover your business logic
-- If a method takes a reference type parameter there should be test for getting `null` as an argument. It is called negative test cases.
-- You can read easily an environment variable's value: `System.getenv("VAR_NAME");`
-- You can import the sample data file into `psql` with the `\i` command or run it via the Database tool in IntelliJ.
-- In IntelliJ language injections let you work with pieces of code in other languages embedded in your code. When you inject a language (such as PostgreSQL) into a string literal, you get comprehensive code assistance for editing that literal.
-- Do you remember how to set environment variables for your run configuration? [here](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html)
-- For serialization you need to add necessary dependency to your `pom.xml` and reload the maven project
-
-## Starting your project
-
-To start your project click [this link](https://journey.code.cool/v2/project/team/blueprint/dungeon-crawl-2/java), and make sure to **select or create your team**.
-
-## Background materials
-
-- <i class="far fa-exclamation"></i> [Software testing](https://learn.code.cool/full-stack/#/../pages/general/software-testing)
-- <i class="far fa-open_book"></i> [Positive or negative](https://stackoverflow.com/questions/8162423)
-- <i class="far fa-exclamation"></i> [How to design classes](https://learn.code.cool/full-stack/#/../pages/java/how-to-design-classes)
-- <i class="far fa-exclamation"></i> [Introduction to jdbc](https://learn.code.cool/full-stack/#/../pages/java/introduction-to-jdbc)
-- <i class="far fa-exclamation"></i> [jdbc basics](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
-- <i class="far fa-exclamation"></i> [DAO pattern in Java](https://www.baeldung.com/java-dao-pattern)
-- <i class="far fa-exclamation"></i> [Serialization in Java](https://learn.code.cool/full-stack/#/../pages/java/serialization-in-java)
-- <i class="far fa-exclamation"></i> [Compare two popular serialization framwork](https://www.baeldung.com/jackson-vs-gson)
-
-
-### References
-
-The tiles used in the game are from [1-Bit Pack by Kenney](https://kenney.nl/assets/bit-pack),
-shared on [CC0 1.0 Universal license](https://creativecommons.org/publicdomain/zero/1.0/).
